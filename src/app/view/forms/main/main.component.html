@@ -1,0 +1,56 @@
+<div class="card card-custom">
+  <div class="card-header card-custom-header">Form Hotel Service</div>
+  <div class="card-body">
+    <form [formGroup]="bookingGroup" (ngSubmit)="onSubmitReservation()">
+      <!-- Text input -->
+      <div class="form-outline mb-4" [formGroupName]="'reservee'">
+        <label class="form-label" for="form6Example3">Nama Tamu</label>
+        <input type="text" id="form6Example3" class="form-control" formControlName="name"/>
+      </div>
+
+      <!-- Text input -->
+      <div class="form-outline mb-4" [formGroupName]="'reservee'">
+        <label class="form-label" for="form6Example3">Email Tamu</label>
+        <input type="email" id="form6Example3" class="form-control" formControlName="email"/>
+      </div>
+
+      <!-- Text input -->
+      <div class="form-outline mb-4" [formGroupName]="'reservee'">
+        <label class="form-label" for="form6Example4">No Handphone Tamu</label>
+        <input type="number" id="form6Example4" class="form-control" formControlName="phone"/>
+      </div>
+
+      <!-- Email input -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form6Example5">Nomor Kamar</label>
+        <input type="email" id="form6Example5" class="form-control" formControlName="roomNumber"/>
+      </div>
+
+      <!-- Number input -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form6Example6">Lama Menginap</label>
+        <input type="number" id="form6Example6" class="form-control" formControlName="duration"/>
+      </div>
+
+      <!-- Number input -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form6Example6">Jumlah Tamu</label>
+        <input type="number" id="form6Example6" class="form-control" formControlName="guestCount"/>
+      </div>
+
+      <!-- Checkbox -->
+      <!-- <div class="form-check d-flex justify-content-center mb-4">
+            <input class="form-check-input me-2" type="checkbox" value="" id="form6Example8" checked />
+            <label class="form-check-label" for="form6Example8"> Create an account? </label>
+          </div> -->
+
+      <!-- Submit button -->
+      <button
+        type="submit"
+        class="btn btn-primary btn-block mb-4"
+      >
+        Place order
+      </button>
+    </form>
+  </div>
+</div>
