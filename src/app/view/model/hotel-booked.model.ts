@@ -1,6 +1,6 @@
 export interface Book {
     id: number;
-    status: "reserved" | "checked-in" | "checked-out";
+    status: 'reserved' | 'checked-in' | 'checked-out';
     roomNumber: string;
     duration: number;
     guestCount: number;

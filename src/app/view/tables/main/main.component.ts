@@ -3,6 +3,7 @@ import { Book } from '../../model/hotel-booked.model';
 import { HotelService } from '../../service/hotel-service.service';
 import { HotelTables } from '../model/hotel-tables.model';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -11,8 +12,12 @@ import Swal from 'sweetalert2';
 })
 export class MainComponent implements OnInit, HotelTables {
   bookings: Book[] = [];
+  urlLinked: string = '/home/forms-hotel-services';
 
-  constructor(private readonly hotelService: HotelService) {}
+  constructor(
+    private readonly hotelService: HotelService,
+    private readonly router: Router
+  ) {}
 
   ngOnInit(): void {
     this.onLoadBooking();
@@ -29,7 +34,15 @@ export class MainComponent implements OnInit, HotelTables {
   }
 
   onReserve(booking: Book): void {
-    
+    if (booking.status === 'reserved') {
+      this.router.navigateByUrl(`${this.urlLinked}/${booking.id}`);
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `Tamu ${booking.reservee.name} sudah melakukan ${booking.status} tidak bisa ubah durasi malam`,
+      });
+    }
   }
 
   // No GETbyID method
@@ -54,15 +67,14 @@ export class MainComponent implements OnInit, HotelTables {
             icon: 'error',
             title: 'Oops...',
             text: `Tamu ${booking.reservee.name} sudah melakukan ${booking.status} tidak bisa melakukan checked-in !`,
-            footer: '<a href="">Why do I have this issue?</a>'
-          })
+          });
         } else {
           this.hotelService.checkIn(bookingId).subscribe();
           Swal.fire(
             'Good job!',
             `Tamu ${booking.reservee.name} sudah check-in pada kamar ${booking.roomNumber}`,
             'success'
-          )
+          );
         }
       },
     });
@@ -90,15 +102,15 @@ export class MainComponent implements OnInit, HotelTables {
             icon: 'error',
             title: 'Oops...',
             text: `Tamu tidak bisa melakukan check-out sebelum melakukan check-in`,
-            footer: '<a href="">Why do I have this issue?</a>'
-          })
+            footer: '<a href="">Why do I have this issue?</a>',
+          });
         } else {
           this.hotelService.checkOut(bookingId).subscribe();
           Swal.fire(
             'Good job!',
             `Tamu ${booking.reservee.name} sudah melakukan check-out`,
             'success'
-          )
+          );
         }
       },
     });
@@ -107,12 +119,12 @@ export class MainComponent implements OnInit, HotelTables {
   onDeleteReservation(bookingId: number): void {
     this.hotelService.get(bookingId).subscribe({
       next: (booking: Book) => {
-        if(booking.status === 'reserved' || booking.status === 'checked-in') {
+        if (booking.status === 'reserved' || booking.status === 'checked-in') {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: `Data pemesanan tidak dapat di hapus karena tamu ${booking.reservee.name} belum checkout.`
-          })
+            text: `Data pemesanan tidak dapat di hapus karena tamu ${booking.reservee.name} belum checkout.`,
+          });
         } else {
           Swal.fire({
             title: 'Are you sure?',
@@ -121,20 +133,16 @@ export class MainComponent implements OnInit, HotelTables {
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Yes, delete it!',
           }).then((result) => {
             if (result.isConfirmed) {
-              Swal.fire(
-                'Deleted!',
-                'Data tabel telah dihapus.',
-                'success'
-              )
+              Swal.fire('Deleted!', 'Data tabel telah dihapus.', 'success');
               this.hotelService.remove(bookingId).subscribe();
             }
-          })
+          });
         }
-      }
-    })
+      },
+    });
   }
 
   get totalRows(): number {

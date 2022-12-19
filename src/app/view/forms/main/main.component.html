@@ -5,50 +5,101 @@
       <!-- Text input -->
       <div class="form-outline mb-4" [formGroupName]="'reservee'">
         <label class="form-label" for="form6Example3">Nama Tamu</label>
-        <input type="text" id="form6Example3" class="form-control" formControlName="name"/>
+        <input
+          type="text"
+          id="form6Example3"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isFormValid('reservee.name') }"
+          formControlName="name"
+        />
+        <app-validation-message
+          [control]="bookingGroup.get('reservee.name')"
+          [field]="'name'"
+        ></app-validation-message>
       </div>
 
       <!-- Text input -->
       <div class="form-outline mb-4" [formGroupName]="'reservee'">
         <label class="form-label" for="form6Example3">Email Tamu</label>
-        <input type="email" id="form6Example3" class="form-control" formControlName="email"/>
+        <input
+          type="email"
+          id="form6Example3"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isFormValid('reservee.email') }"
+          formControlName="email"
+        />
+        <app-validation-message
+          [control]="bookingGroup.get('reservee.email')"
+          [field]="'email'"
+        ></app-validation-message>
       </div>
 
       <!-- Text input -->
       <div class="form-outline mb-4" [formGroupName]="'reservee'">
         <label class="form-label" for="form6Example4">No Handphone Tamu</label>
-        <input type="number" id="form6Example4" class="form-control" formControlName="phone"/>
+        <input
+          type="number"
+          id="form6Example4"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isFormValid('reservee.phone') }"
+          formControlName="phone"
+        />
+        <app-validation-message
+          [control]="bookingGroup.get('reservee.phone')"
+          [field]="'phone'"
+        ></app-validation-message>
       </div>
 
-      <!-- Email input -->
+      <!-- Nomor Kamar input -->
       <div class="form-outline mb-4">
         <label class="form-label" for="form6Example5">Nomor Kamar</label>
-        <input type="email" id="form6Example5" class="form-control" formControlName="roomNumber"/>
+        <input
+          type="email"
+          id="form6Example5"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isFormValid('roomNumber') }"
+          formControlName="roomNumber"
+        />
+        <app-validation-message
+          [control]="bookingGroup.get('roomNumber')"
+          [field]="'roomNumber'"
+        ></app-validation-message>
       </div>
 
-      <!-- Number input -->
+      <!-- Lama Menginap input -->
       <div class="form-outline mb-4">
         <label class="form-label" for="form6Example6">Lama Menginap</label>
-        <input type="number" id="form6Example6" class="form-control" formControlName="duration"/>
+        <input
+          type="number"
+          id="form6Example6"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isFormValid('duration') }"
+          formControlName="duration"
+        />
+        <app-validation-message
+          [control]="bookingGroup.get('duration')"
+          [field]="'duration'"
+        ></app-validation-message>
       </div>
 
-      <!-- Number input -->
+      <!-- Jumlah Tamu input -->
       <div class="form-outline mb-4">
         <label class="form-label" for="form6Example6">Jumlah Tamu</label>
-        <input type="number" id="form6Example6" class="form-control" formControlName="guestCount"/>
+        <input
+          type="number"
+          id="form6Example6"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isFormValid('guestCount') }"
+          formControlName="guestCount"
+        />
+        <app-validation-message
+          [control]="bookingGroup.get('guestCount')"
+          [field]="'guestCount'"
+        ></app-validation-message>
       </div>
 
-      <!-- Checkbox -->
-      <!-- <div class="form-check d-flex justify-content-center mb-4">
-            <input class="form-check-input me-2" type="checkbox" value="" id="form6Example8" checked />
-            <label class="form-check-label" for="form6Example8"> Create an account? </label>
-          </div> -->
-
       <!-- Submit button -->
-      <button
-        type="submit"
-        class="btn btn-primary btn-block mb-4"
-      >
+      <button class="btn btn-primary btn-block mb-4">
         Place order
       </button>
     </form>

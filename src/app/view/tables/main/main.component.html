@@ -35,7 +35,13 @@
               <td>{{ booking.duration }} Malam</td>
               <td>250.000</td>
               <td>{{ booking.guestCount }}</td>
-              <td><span class="badge bg-primary">{{ booking.status }}</span></td>
+              <td>
+                <label
+                  for=""
+                  [innerHTML]="booking.status | bookingStatus"
+                  class=""
+                ></label>
+              </td>
               <td>
                 <div class="btn-group">
                   <button
@@ -50,8 +56,18 @@
                   >
                     Check Out
                   </button>
-                  <button class="btn btn-outline-warning btn-md">Edit</button>
-                  <button (click)="onDeleteReservation(booking.id)" class="btn btn-outline-danger btn-md">Hapus</button>
+                  <button
+                    (click)="onReserve(booking)"
+                    class="btn btn-outline-warning btn-md"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    (click)="onDeleteReservation(booking.id)"
+                    class="btn btn-outline-danger btn-md"
+                  >
+                    Hapus
+                  </button>
                 </div>
               </td>
             </tr>

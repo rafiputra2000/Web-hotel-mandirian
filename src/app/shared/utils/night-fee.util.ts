@@ -1,0 +1,1 @@
+export const NIGHTLY_FEE = 125000;

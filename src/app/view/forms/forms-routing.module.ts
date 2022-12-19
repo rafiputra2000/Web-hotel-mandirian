@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: 'forms-hotel-services',
     component: FormsComponent
+  },
+  {
+    path: 'forms-hotel-services/:id',
+    component: FormsComponent
   }
 ];
 
