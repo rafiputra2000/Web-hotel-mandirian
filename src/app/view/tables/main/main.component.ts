@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Book } from '../../model/hotel-booked.model';
 import { HotelService } from '../../service/hotel-service.service';
 import { HotelTables } from '../model/hotel-tables.model';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { NIGHTLY_FEE } from 'src/app/shared/utils/night-fee.util';
 
 @Component({
   selector: 'app-main',
@@ -13,6 +14,16 @@ import { Router } from '@angular/router';
 export class MainComponent implements OnInit, HotelTables {
   bookings: Book[] = [];
   urlLinked: string = '/home/forms-hotel-services';
+  nightFee: number = NIGHTLY_FEE;
+  viewedPrice: any = new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+  });
+
+  // @Output() _totalRows: EventEmitter<number> = new EventEmitter<number>();
+  // @Output() _checkInRows: EventEmitter<number> = new EventEmitter<number>();
+  // @Output() _checkOutRows: EventEmitter<number> = new EventEmitter<number>();
+  // @Output() _reservedRows: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(
     private readonly hotelService: HotelService,
@@ -146,6 +157,9 @@ export class MainComponent implements OnInit, HotelTables {
   }
 
   get totalRows(): number {
+    // const totalTampung: any = this.bookings.length;
+    // const totalTampung2: any = this._totalRows.emit(totalTampung);
+    // return totalTampung2;
     return this.bookings.length;
   }
 

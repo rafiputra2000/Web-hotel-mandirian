@@ -10,6 +10,7 @@ import { Book } from '../../model/hotel-booked.model';
 import { HotelService } from '../../service/hotel-service.service';
 import { HotelForms } from '../model/hotel-forms.model';
 import Swal from 'sweetalert2';
+import { NIGHTLY_FEE } from 'src/app/shared/utils/night-fee.util';
 
 @Component({
   selector: 'app-main',
@@ -18,6 +19,7 @@ import Swal from 'sweetalert2';
 })
 export class MainComponent implements OnInit, HotelForms {
   booking?: Book;
+  nightFee: number = NIGHTLY_FEE;
 
   constructor(
     private readonly hotelService: HotelService,
@@ -61,7 +63,12 @@ export class MainComponent implements OnInit, HotelForms {
   onSubmitReservation(): void {
     const payload = this.bookingGroup.value;
     console.log(payload);
-    const { reservee } = payload;
+    const { reservee, roomNumber, duration } = payload;
+    const totalPrice: number = duration * NIGHTLY_FEE;
+    const viewedPrice = new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR',
+    });
     Swal.fire({
       title: 'Are you sure?',
       text: 'Anda yakin data yang diisi sudah benar ?',
@@ -77,7 +84,11 @@ export class MainComponent implements OnInit, HotelForms {
             // this.bookingGroup.reset();
             Swal.fire(
               'Good job!',
-              `Tamu ${reservee.name} telah memasan kamar`,
+              `Tamu ${
+                reservee.name
+              } telah melakukan pemesanan untuk kamar ${roomNumber} selama ${duration} malam dengan total tagihan sebesar ${viewedPrice.format(
+                totalPrice
+              )}.`,
               'success'
             );
           },
@@ -85,6 +96,14 @@ export class MainComponent implements OnInit, HotelForms {
         this.router.navigateByUrl('/home/tables-hotel-services');
       }
     });
+  }
+
+  keyPress(event: any) {
+    const pattern = /[0-9\+\-\ ]/;
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
   }
 
   isFormValid(field: string): boolean {

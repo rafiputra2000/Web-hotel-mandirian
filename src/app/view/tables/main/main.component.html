@@ -33,7 +33,7 @@
               <td>{{ booking.reservee.name }}</td>
               <td>{{ booking.roomNumber }}</td>
               <td>{{ booking.duration }} Malam</td>
-              <td>250.000</td>
+              <td>{{viewedPrice.format(booking.duration * nightFee)}}</td>
               <td>{{ booking.guestCount }}</td>
               <td>
                 <label

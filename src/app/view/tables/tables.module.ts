@@ -6,8 +6,6 @@ import { MainComponent } from './main/main.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SidebarModule } from '../components/sidebar/sidebar.module';
 import { RouterModule } from '@angular/router';
-import { HotelService } from '../service/hotel-service.service';
-
 
 @NgModule({
   declarations: [TablesComponent, MainComponent],
@@ -16,10 +14,7 @@ import { HotelService } from '../service/hotel-service.service';
     TablesRoutingModule,
     SharedModule,
     SidebarModule,
-    RouterModule
+    RouterModule,
   ],
-  providers: [
-    HotelService
-  ]
 })
-export class TablesModule { }
+export class TablesModule {}

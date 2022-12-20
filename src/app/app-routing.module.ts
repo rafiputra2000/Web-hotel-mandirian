@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'; // CLI imports router
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
+import { RouteGuard } from './shared/guard/route.guard';
 
 const routes: Routes = [
   {
@@ -9,18 +10,19 @@ const routes: Routes = [
   },
   {
     path: 'home',
+    canActivateChild: [RouteGuard],
     loadChildren: () => import('./view/view.module').then((m) => m.ViewModule),
   },
-  {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full',
-  },
+  // {
+  //   path: '',
+  //   redirectTo: '/home',
+  //   pathMatch: 'full',
+  // },
   {
     path: '**',
     pathMatch: 'full',
-    component: NotFoundComponent
-  }
+    component: NotFoundComponent,
+  },
 ]; // sets up routes constant where you define your routes
 
 // configures NgModule imports and exports
