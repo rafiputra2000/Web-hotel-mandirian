@@ -9,15 +9,15 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path: 'home',
+    path: 'dashboard',
     canActivateChild: [RouteGuard],
     loadChildren: () => import('./view/view.module').then((m) => m.ViewModule),
   },
-  // {
-  //   path: '',
-  //   redirectTo: '/home',
-  //   pathMatch: 'full',
-  // },
+  {
+    path: '',
+    redirectTo: '/auth/login',
+    pathMatch: 'full',
+  },
   {
     path: '**',
     pathMatch: 'full',

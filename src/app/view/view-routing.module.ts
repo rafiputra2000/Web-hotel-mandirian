@@ -1,28 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ViewComponent } from './view.component';
 
 const routes: Routes = [
-    {
-        path: '',
-        children: [
-            {
-                path: '',
-                loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
-            },
-            {
-                path: '',
-                loadChildren: () => import('./tables/tables.module').then(m => m.TablesModule)
-            },
-            {
-                path: '',
-                loadChildren: () => import('./forms/forms.module').then(m => m.FormsBookingModule)
-            }
-        ]
-    },
+  {
+    path: '',
+    component: ViewComponent,
+    children: [
+      {
+        path: 'home',
+        loadChildren: () =>
+          import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ViewRoutingModule { }
+export class ViewRoutingModule {}

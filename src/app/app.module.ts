@@ -9,7 +9,7 @@ import { HotelService } from './view/service/hotel-service.service';
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, RouterModule],
-  providers: [HotelService],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

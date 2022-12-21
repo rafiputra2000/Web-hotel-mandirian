@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(payload).subscribe({
       next: (token: string | null) => {
         if (token) {
-          this.router.navigateByUrl('home');
+          this.router.navigateByUrl('/dashboard/home');
         } else {
           Swal.fire({
             icon: 'error',

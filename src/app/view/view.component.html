@@ -1,1 +1,69 @@
-<router-outlet></router-outlet>
+<div class="d-flex" id="wrapper">
+  <!-- Sidebar -->
+  <div
+    class="bg-custom border-right"
+    id="sidebar-wrapper"
+    [ngClass]="status ? 'hide' : 'show'"
+  >
+    <div class="sidebar-heading text-center">
+      <a routerLink="/dashboard/home">
+        <img src="../../assets/images/logo-mandiri.png" alt="" />
+      </a>
+    </div>
+    <div class="list-group list-group-flush mt-5">
+      <a
+        routerLink="/dashboard/home"
+        class="list-group-item list-group-item-action bg-custom font-custom"
+        ><i class="bi bi-house"></i>
+        <span class="ms-2 d-none d-sm-inline">Dashboard</span>
+      </a>
+      <a
+        routerLink="/dashboard/home/table"
+        class="list-group-item list-group-item-action bg-custom font-custom"
+      >
+        <i class="bi bi-list-ul"></i>
+        <span class="ms-2 d-none d-sm-inline">Tables hotel</span></a
+      >
+      <a
+        routerLink="/dashboard/home/form"
+        class="list-group-item list-group-item-action bg-custom font-custom"
+        ><i class="bi bi-table"></i
+        ><span class="ms-2 d-none d-sm-inline">Forms hotel</span></a
+      >
+      <!-- <a href="#" class="list-group-item list-group-item-action bg-custom"
+        >Events</a
+      >
+      <a href="#" class="list-group-item list-group-item-action bg-custom"
+        >Profile</a
+      >
+      <a href="#" class="list-group-item list-group-item-action bg-custom"
+        >Status</a
+      > -->
+    </div>
+  </div>
+  <!-- /#sidebar-wrapper -->
+  
+  
+
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <button class="btn btn-primary" (click)="clickEvent()">
+          Toggle Menu
+        </button>
+        <div class="d-flex">
+          <button (click)="onLoggedOut()" class="btn btn-outline-danger">
+            Log Out
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid p-3 bg-custom-main">
+        <router-outlet></router-outlet>
+    </div>
+  </div>
+  <!-- /#page-content-wrapper -->
+</div>
+<!-- /#wrapper -->

@@ -1,0 +1,35 @@
+.bg-custom{
+    background-color: #30669F;
+}
+
+
+.bg-custom-main{
+    background-color: #E5E5E5;
+}
+
+table {
+    border-collapse: collapse;
+    border-radius: 1em;
+    overflow: hidden;
+  }
+  
+  th, td {
+    padding: 1em;
+    background: rgb(246, 243, 243);
+    border-bottom: 2px solid white; 
+  }
+
+//   thead th {
+//     background: #ddd;
+//     border-radius: 1em;
+//   }
+  
+
+.card-custom {
+    border-radius: 20px;
+}
+
+.card-custom-header {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}

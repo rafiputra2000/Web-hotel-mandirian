@@ -1,0 +1,148 @@
+<!-- <div
+  class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+>
+  <h1 class="h2">Book Form</h1>
+</div> -->
+
+<div class="card">
+  <div class="card-header">Form Hotel Mandirian</div>
+  <div class="card-body">
+    <form [formGroup]="bookingGroup" (ngSubmit)="onSubmitReservation()">
+      <div class="mb-3 row" formGroupName="reservee">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Nama</label>
+        <div class="col-sm-8">
+          <input
+            type="text"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': isFormValid('reservee.name') }"
+            id="staticEmail"
+            formControlName="name"
+            [readOnly]="bookingGroup.value.id"
+            placeholder="Nama pemesan"
+          />
+          <app-validation-message
+            [control]="bookingGroup.get('reservee.name')"
+            [field]="'name'"
+          ></app-validation-message>
+        </div>
+      </div>
+      <div class="mb-3 row" [formGroupName]="'reservee'">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-8">
+          <input
+            type="text"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': isFormValid('reservee.email') }"
+            id="inputPassword"
+            formControlName="email"
+            [readOnly]="bookingGroup.value.id"
+            placeholder="Email pemesan"
+          />
+          <app-validation-message
+            [control]="bookingGroup.get('reservee.email')"
+            [field]="'email'"
+          ></app-validation-message>
+        </div>
+      </div>
+      <div class="mb-3 row" [formGroupName]="'reservee'">
+        <label for="inputPassword" class="col-sm-2 col-form-label"
+          >No Handphone</label
+        >
+        <div class="col-sm-8">
+          <input
+            type="text"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': isFormValid('reservee.phone') }"
+            id="inputPassword"
+            (keypress)="keyPress($event)"
+            formControlName="phone"
+            [readOnly]="bookingGroup.value.id"
+            placeholder="No handphone pemesan"
+          />
+          <app-validation-message
+            [control]="bookingGroup.get('reservee.phone')"
+            [field]="'no handphone'"
+          ></app-validation-message>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"
+          >Nomor Kamar</label
+        >
+        <div class="col-sm-8">
+          <input
+            type="text"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': isFormValid('roomNumber') }"
+            id="inputPassword"
+            (keypress)="keyPress($event)"
+            formControlName="roomNumber"
+            placeholder="Nomor kamar"
+          />
+          <app-validation-message
+            [control]="bookingGroup.get('roomNumber')"
+            [field]="'nomor kamar'"
+          ></app-validation-message>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"
+          >Lama Menginap</label
+        >
+        <div class="col-sm-8">
+          <input
+            type="text"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': isFormValid('duration') }"
+            id="inputPassword"
+            (keypress)="keyPress($event)"
+            formControlName="duration"
+            placeholder="Lama menginap"
+          />
+          <app-validation-message
+            [control]="bookingGroup.get('duration')"
+            [field]="'lama menginap'"
+          ></app-validation-message>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"
+          >Jumlah Tamu</label
+        >
+        <div class="col-sm-8">
+          <input
+            type="text"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': isFormValid('guestCount') }"
+            id="inputPassword"
+            (keypress)="keyPress($event)"
+            formControlName="guestCount"
+            [readOnly]="bookingGroup.value.id"
+            placeholder="Jumlah tamu"
+          />
+          <app-validation-message
+            [control]="bookingGroup.get('guestCount')"
+            [field]="'jumlah tamu'"
+          ></app-validation-message>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-8">
+          <button
+            class="btn btn-outline-primary"
+            [disabled]="!bookingGroup.valid"
+          >
+            <i class="bi bi-save"></i> Simpan</button
+          >&nbsp;
+          <button
+            class="btn btn-outline-secondary"
+            routerLink="/dashboard/home/table"
+          >
+            <i class="bi bi-arrow-left"></i> Kembali
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

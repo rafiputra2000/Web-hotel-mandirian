@@ -1,0 +1,113 @@
+<div class="card card-custom">
+  <div
+    class="card-header card-custom-header d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+  >
+    <h2>Tabel Pemesanan Kamar</h2>
+    <a routerLink="/dashboard/home/form">
+      <button class="btn btn-primary">+ ADD</button>
+    </a>
+  </div>
+  <div class="card-body">
+    <!-- <h2> Total isi tabel = {{ totalRows() }}</h2>
+    <h2> Total isi tabel yang reserved = {{ reservedRows() }}</h2>
+    <h2> Total isi tabel yang check in = {{ checkInRows() }}</h2>
+    <h2> Total isi tabel yang check out = {{ checkOutRows() }}</h2> -->
+    <div class="table-responsive">
+      <div class="container mt-3">
+        <table class="table table-bordered text-center">
+          <thead>
+            <tr>
+              <th>BookingID</th>
+              <th>Nama Pemesan</th>
+              <th>Nomor Kamar</th>
+              <th>Durasi Menginap</th>
+              <th>Total Biaya</th>
+              <th>Jumlah Tamu</th>
+              <th>Status Pemesanan</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let booking of bookings; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ booking.reservee.name }}</td>
+              <td>{{ booking.roomNumber }}</td>
+              <td>{{ booking.duration }} Malam</td>
+              <td>{{viewedPrice.format(booking.duration * nightFee)}}</td>
+              <td>{{ booking.guestCount }}</td>
+              <td>
+                <label
+                  for=""
+                  [innerHTML]="booking.status | bookingStatus"
+                  class=""
+                ></label>
+              </td>
+              <td>
+                <div class="btn-group">
+                  <button
+                    (click)="onCheckIn(booking.id)"
+                    class="btn btn-outline-primary btn-md"
+                  >
+                    Check In
+                  </button>
+                  <button
+                    (click)="onCheckOut(booking.id)"
+                    class="btn btn-outline-secondary btn-md"
+                  >
+                    Check Out
+                  </button>
+                  <button
+                    (click)="onReserve(booking)"
+                    class="btn btn-outline-warning btn-md"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    (click)="onDeleteReservation(booking.id)"
+                    class="btn btn-outline-danger btn-md"
+                  >
+                    Hapus
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card card-custom mt-5">
+  <div
+    class="card-header card-custom-header d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+  >
+    <h2>Tabel Daftar Tamu</h2>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <div class="container mt-3">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>BookingID</th>
+              <th>Nama Tamu</th>
+              <th>Email Tamu</th>
+              <th>No Handphone Tamu</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let booking of bookings; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ booking.reservee.name }}</td>
+              <td>{{ booking.reservee.email }}</td>
+              <td>{{ booking.reservee.phone }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
